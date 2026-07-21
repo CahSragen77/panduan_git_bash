@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Sukses Laragon & GitHub - CahSragen77</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #1abc9c; padding-bottom: 10px; text-align: center; }
+        h2 { color: #16a085; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        h3 { color: #2980b9; }
+        .command-box { background-color: #2d3748; color: #fff; padding: 12px 15px; border-radius: 6px; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; margin: 10px 0; overflow-x: auto; border-left: 5px solid #e2e8f0; }
+        .note { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 12px; margin: 15px 0; border-radius: 4px; }
+        .success { background-color: #d4edda; border-left: 5px solid #28a745; padding: 12px; margin: 15px 0; border-radius: 4px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        code { background-color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 PANDUAN LENGKAP LARAGON TO GITHUB</h1>
+    <p style="text-align: center; font-style: italic;">Pengingat langkah demi langkah biar nggak lupa lagi. Semangat ngulik, Mas Bro!</p>
+
+    <!-- BAGIAN 1 -->
+    <h2>1. Menghubungkan Banyak Folder Proyek Terpisah ke Laragon</h2>
+    <p>Jika folder proyek Anda tersebar di folder laptop yang berbeda (di luar <code>C:\laragon\www</code>), gunakan fitur <strong>Symlink</strong> agar Laragon tidak mengunci satu folder saja:</p>
+    <ul>
+        <li>Buka aplikasi utama Laragon, klik tombol <strong>Terminal</strong> (Cmder).</li>
+        <li>Buka File Explorer, cari folder proyek Anda, lalu salin alamat jalurnya (path).</li>
+        <li>Ketik perintah pembuat jalan pintas virtual ini di terminal:</li>
+    </ul>
+    <div class="command-box">linker link "D:\Jalur\Folder\Proyek\Kamu"</div>
+    <ul>
+        <li>Klik kanan pada area kosong di panel Laragon, pilih <strong>Apache</strong> &gt; <strong>Reload</strong>.</li>
+        <li>Proyek siap diakses di browser melalui alamat: <code>http://nama-folder.test</code></li>
+    </ul>
+
+    <!-- BAGIAN 2 -->
+    <h2>2. Cara Cepat Tes index.php / Membuka Proyek</h2>
+    <p>Untuk langsung menguji file PHP di browser langsung dari terminal Cmder:</p>
+    <ul>
+        <li>Pastikan posisi terminal sudah berada di dalam folder proyek tersebut.</li>
+        <li>Ketik perintah pembuka otomatis (pastikan tidak typo <s>poen</s>):</li>
+    </ul>
+    <div class="command-box">open .</div>
+    <div class="note">
+        <strong>⚠️ Catatan Penting:</strong> Pastikan tombol <strong>Start All</strong> di Laragon sudah diklik sampai berubah menjadi tulisan <em>Stop</em>, jika tidak website akan memunculkan error "Site cannot be reached".
+    </div>
+
+    <!-- BAGIAN 3 -->
+    <h2>3. Mengatasi Gembok Keamanan Git (Dubious Ownership)</h2>
+    <p>Jika Git menolak perintah karena mendeteksi hak akses folder yang berbeda (biasanya efek pindah OS/akun Windows), buka gemboknya dengan perintah pengecualian global ini:</p>
+    <div class="command-box">git config --global --add safe.directory D:/laragon/www/nama-folder-kamu</div>
+
+    <!-- BAGIAN 4 -->
+    <h2>4. Mengatur Identitas Git Pertama Kali</h2>
+    <p>Jika muncul error <em>"Author identity unknown"</em>, beri tahu Git siapa pemiliknya:</p>
+    <div class="command-box">
+        git config --global user.email "email_kamu@gmail.com"<br>
+        git config --global user.name "NamaAkunGitHub"
+    </div>
+
+    <!-- BAGIAN 5 -->
+    <h2>5. Alur Mengunggah Proyek Baru ke GitHub (Misi Sukses)</h2>
+    <p>Berikut urutan perintah sakti dari awal inisialisasi sampai masuk ke cabang utama <code>main</code> di GitHub:</p>
+    
+    <h3>Langkah Awal di Website GitHub:</h3>
+    <ul>
+        <li>Buat repositori baru di website GitHub, beri nama, lalu klik <strong>Create repository</strong>.</li>
+        <li>Salin tautan HTTPS repositorinya (contoh: <code>https://github.com</code>).</li>
+    </ul>
+
+    <h3>Langkah Eksekusi di Terminal Laragon:</h3>
+    <p>Jalankan perintah ini berurutan satu per satu:</p>
+    <div class="command-box">
+        git init<br>
+        git add .<br>
+        git commit -m "unggah berkas Pertama Proyek"<br>
+        git branch -M main<br>
+        git remote add origin TAUTAN_HTTPS_YANG_KAMU_COPY<br>
+        git push -u origin main --force
+    </div>
+    
+    <div class="note">
+        <strong>💡 Mengapa pakai --force di akhir?</strong> Kita gunakan perintah paksa ini agar file codingan PHP dari laptop langsung menimpa file pembuka bawaan GitHub (README) tanpa memicu bentrok riwayat sejarah yang berbeda.
+    </div>
+
+    <!-- BAGIAN 6 -->
+    <h2>6. Cara Update Kode Selanjutnya (Setelah Sukses Pertama)</h2>
+    <p>Nanti kalau Anda melakukan perubahan kode/codingan baru lagi, cukup ketik 3 perintah pendek ini saja di terminal:</p>
+    <div class="command-box">
+        git add .<br>
+        git commit -m "isi catatan perubahan barumu di sini"<br>
+        git push
+    </div>
+
+    <div class="success">
+        🎉 <strong>Selesai!</strong> Sekarang memori laptop dan memori kepala aman. Kapan pun lupa langkahnya, tinggal buka file HTML ini. Selamat berkarya, Mas Bro!
+    </div>
+
+</body>
+</html>
